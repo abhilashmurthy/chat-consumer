@@ -68,4 +68,12 @@
 
 <template name="page">
 	<h1>Welcome, {{currentUser.services.facebook.name}}</h1>
+	<button id="getInboxBtn" class="btn btn-primary">Get messages</button>
+	{{> messages}}
+</template>
+
+<template name="messages">
+	{{#each messages}}
+		<h2>{{id}}</h2>
+	{{/each}}
 </template>

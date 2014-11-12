@@ -27,6 +27,20 @@ Template.user_loggedin.events({
 	}
 });
 
+//////////////////////////////////////////////////////////////////////////////////////////////// PAGE
+Template.page.events = {
+	'click #getInboxBtn': function(e) {
+		Meteor.call('getInbox', Meteor.user(), function(err, messages){
+			console.log('Success!');
+			Session.set('messages', messages);
+		});
+	}
+}
+
+Template.messages.messages = function(){
+	return Session.get('messages');
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////// PLUGINS
 //Pnotify settings
 $.pnotify.defaults.history = false;
