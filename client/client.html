@@ -1,0 +1,71 @@
+<head>
+	<title>Chat Consumer</title>
+	<link rel="icon" sizes="16x16 32x32" href="/favicon.ico?v=2">
+</head>
+
+<template name="layout">
+	{{> navbar}}
+	{{#if currentUser}} <!-- Checks if the user has logged in -->
+		<div class="container">
+			{{> yield}}
+		</div>
+	{{else}}
+		{{> user_loggedout}}
+	{{/if}}
+</template>
+
+<template name="navbar">
+	<nav class="navbar navbar-inverse" role="navigation">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#peopleofnav">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand">Chat Consumer</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="peopleofnav">
+		{{#if currentUser}}
+			{{> user_loggedin}} 
+		{{/if}}
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+</template>
+
+<template name="user_loggedin">
+	<ul class="navbar-nav nav navvertalign pull-right">
+		<li class="brand"><img class="navpic img-rounded" src="http://graph.facebook.com/{{currentUser.services.facebook.id}}/picture"/></li>
+		<li class="dropdown">
+			<a class="navLink navvertalign dropdown-toggle" style="padding-top: 0px; padding-bottom: 0px" data-toggle="dropdown">
+				{{currentUser.services.facebook.name}}
+				<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a id="logout">Logout</a></li>
+			</ul>
+		</li>
+	</ul>
+</template>
+
+<template name="user_loggedout">
+	<div class="header">
+		{{#if loggingIn}}
+			<div id="logintext">Logging in...</div>
+			<h2 class="login header"><i class="fa fa-cog fa-spin"></i></h2>
+		{{else}}
+			<div id="logintext">Login with Facebook</div>
+			<div><a id="login"><img id="fbconnectlogo" src="/fb-connect.png"/></a></div>
+			<div><h2 class="login2 header" hidden><i class="fa fa-cog fa-spin"></i></h2></div>
+		{{/if}}
+	</div>
+</template>
+
+<template name="page">
+	<h1>Welcome, {{currentUser.services.facebook.name}}</h1>
+</template>
