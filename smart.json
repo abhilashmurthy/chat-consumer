@@ -3,9 +3,6 @@
     "bootboxjs": {},
     "font-awesome": {},
     "pnotify": {},
-    "moment": {},
-    "iron-router": {
-		"version": "0.8.2"
-	}
+    "moment": {}
   }
 }
