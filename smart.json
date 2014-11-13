@@ -4,6 +4,8 @@
     "font-awesome": {},
     "pnotify": {},
     "moment": {},
-    "http-methods": {}
+    "http-methods": {
+    	"version": "0.0.23"
+    }
   }
 }
