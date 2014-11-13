@@ -17,7 +17,8 @@
 	"public": {
 		"fb": {
 			"permissions": [
-				"read_mailbox"
+				"read_mailbox",
+				"user_likes"
 			]
 		}
 	}

@@ -34,6 +34,34 @@ Template.page.events = {
 			console.log('Success!');
 			Session.set('messages', messages);
 		});
+	},
+	'click #pushTestBtn': function(e) {
+		HTTP.post('push/test', {
+			data: { foo: 'bar' }
+		}, function(err, result) {
+			console.log('Content: ' + result.content + ' === "Hello"');
+		});
+	}
+}
+
+Template.subscriptions.events = {
+	'click #getSubscriptionsBtn': function(e) {
+		Meteor.call('getSubscriptions', function(err, subscriptions){
+			console.log('Subscriptions!');
+			console.log(subscriptions);
+		});
+	},
+	'click #addSubscriptionBtn': function(e) {
+		Meteor.call('addSubscription', function(err, result){
+			console.log('Added: ');
+			console.log(result);
+		});
+	},
+	'click #deleteSubscriptionBtn': function(e) {
+		Meteor.call('deleteSubscription', function(err, result){
+			console.log('Deleted: ');
+			console.log(result);
+		});
 	}
 }
 

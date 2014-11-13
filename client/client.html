@@ -68,7 +68,9 @@
 
 <template name="page">
 	<h1>Welcome, {{currentUser.services.facebook.name}}</h1>
+	{{> subscriptions}}
 	<button id="getInboxBtn" class="btn btn-primary">Get messages</button>
+	<button id="pushTestBtn" class="btn btn-primary">Push test</button>
 	{{> messages}}
 </template>
 
@@ -77,3 +79,10 @@
 		<h2>{{id}}</h2>
 	{{/each}}
 </template>
+
+<template name="subscriptions">
+	<button id="getSubscriptionsBtn" class="btn btn-success">Get subscriptions</button>
+	<button id="addSubscriptionBtn" class="btn btn-warning">Add subscription</button>
+	<button id="deleteSubscriptionBtn" class="btn btn-danger">Delete subscription</button>
+</template>
+
