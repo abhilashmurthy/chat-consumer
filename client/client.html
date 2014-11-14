@@ -69,14 +69,26 @@
 <template name="page">
 	<h1>Welcome, {{currentUser.services.facebook.name}}</h1>
 	{{> subscriptions}}
-	<button id="getInboxBtn" class="btn btn-primary">Get messages</button>
-	<button id="pushTestBtn" class="btn btn-primary">Push test</button>
-	{{> messages}}
+	<div style="margin-top: 20px">
+		<button id="startListeningBtn" class="btn btn-primary">Start Listening</button>
+		<button id="stopListeningBtn" class="btn btn-danger">Stop Listening</button>
+		{{> messages}}
+		{{> likes}}
+	</div>
 </template>
 
 <template name="messages">
+	<h3>Messages</h3>
 	{{#each messages}}
-		<h2>{{id}}</h2>
+
+		<h4><b style="color: red">{{message.created_time}}</b>: {{message.message}}</h4>
+	{{/each}}
+</template>
+
+<template name="likes">
+	<h3>Likes</h3>
+	{{#each likes}}
+		<h4>{{id}}</h4>
 	{{/each}}
 </template>
 

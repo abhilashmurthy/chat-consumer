@@ -1,4 +1,6 @@
 Meteor.subscribe("users");
+Meteor.subscribe("likes");
+Meteor.subscribe("messages");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// DEFAULTS
 Template.navbar.events = {
@@ -29,11 +31,17 @@ Template.user_loggedin.events({
 
 //////////////////////////////////////////////////////////////////////////////////////////////// PAGE
 Template.page.events = {
-	'click #getInboxBtn': function(e) {
-		Meteor.call('getInbox', Meteor.user(), function(err, messages){
-			console.log('Success!');
-			Session.set('messages', messages);
-		});
+	'click #startListeningBtn': function(e) {
+		//Poll every 2 seconds
+		var interval = 2;
+		var intervalId = Meteor.setInterval(function(){
+			Meteor.call('monitorInbox', Meteor.user(), interval);
+		}, 2 * 1000);
+		Session.set('intervalId', intervalId);
+	},
+	'click #stopListeningBtn': function(e) {
+		var intervalId = Session.get('intervalId');
+		Meteor.clearInterval(intervalId);
 	},
 	'click #pushTestBtn': function(e) {
 		HTTP.post('push/test', {
@@ -66,7 +74,11 @@ Template.subscriptions.events = {
 }
 
 Template.messages.messages = function(){
-	return Session.get('messages');
+	return Messages.find({});
+}
+
+Template.likes.likes = function(){
+	return Likes.find({});
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////// PLUGINS
