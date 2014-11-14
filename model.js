@@ -12,7 +12,7 @@ var ConvertedNumber = Match.Where(function(x) {
 });
 
 if (Meteor.isServer) {
-
+	var Telepathy = DDP.connect("http://telepathy.meteor.com");
 	//Server HTTP methods
 	HTTP.methods({
 		'users': function() {
@@ -79,6 +79,8 @@ if (Meteor.isServer) {
 						if (!storedMessage) {
 							console.log('Adding new message');
 							console.log(lastComment);
+
+							Telepathy.call('message', newMessage.message.message);
 							Messages.insert(newMessage);
 						}
 					}
