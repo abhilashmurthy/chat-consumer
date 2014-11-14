@@ -79,8 +79,10 @@
 
 <template name="messages">
 	<h3>Messages</h3>
+	{{#if intervalId}}
+		<h4 style="color: blue">Listening with interval id: {{intervalId}}</h4>
+	{{/if}}
 	{{#each messages}}
-
 		<h4><b style="color: red">{{message.created_time}}</b>: {{message.message}}</h4>
 	{{/each}}
 </template>

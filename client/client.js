@@ -42,6 +42,7 @@ Template.page.events = {
 	'click #stopListeningBtn': function(e) {
 		var intervalId = Session.get('intervalId');
 		Meteor.clearInterval(intervalId);
+		Session.set('intervalId', null);
 	},
 	'click #pushTestBtn': function(e) {
 		HTTP.post('push/test', {
@@ -75,6 +76,10 @@ Template.subscriptions.events = {
 
 Template.messages.messages = function(){
 	return Messages.find({});
+}
+
+Template.messages.intervalId = function(){
+	return Session.get('intervalId');
 }
 
 Template.likes.likes = function(){

@@ -5,14 +5,14 @@
 		"secret": "2659990b92e50331a3a5217afa8f120f"
 	},
 	"fb_prod": {
-		"name": "chat-consumer",
-		"appId": "612991088824178",
-		"secret": "e72103c40e92abc6dd11d04e641fdb37"
-	},
-	"fb_dev": {
 		"name": "peopleof-dev",
 		"appId": "1420278898226217",
 		"secret": "2659990b92e50331a3a5217afa8f120f"
+	},
+	"fb_dev": {
+		"name": "meteortest",
+		"appId": "556687501111482",
+		"secret": "a2c6305d16a5e426fe727054d8cfc7a1"
 	},
 	"fb_subscriptions": {
 		"callback_url": "http://chat-consumer.meteor.com/push/fb",
@@ -22,8 +22,7 @@
 	"public": {
 		"fb": {
 			"permissions": [
-				"read_mailbox",
-				"user_likes"
+				"read_mailbox"
 			]
 		}
 	}
